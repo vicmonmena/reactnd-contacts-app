@@ -25,10 +25,23 @@ class App extends Component {
       }
     ]
   }
+
+  // Con esta función SI esperaría por el evento donde se asigne (en este caso el onClick del button dentro del ListContacs)
+  // removeContact = event => {
+  //   console.log('Removing contact')
+  // }
+
+  removeContact = contact => {
+    console.log('Removing contact: ' + contact.id)
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(item => (item.id !== contact.id))
+    }))
+  }
+
   render() {
     return (
       <div>
-        <ListContacts contacts={this.state.contacts} />
+        <ListContacts contacts={this.state.contacts} handleRemoveClick={this.removeContact}/>
       </div>
     );
   }
