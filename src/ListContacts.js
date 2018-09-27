@@ -25,20 +25,32 @@ import PropTypes from 'prop-types';
     })
   }
   render() {
+
+    const { query } = this.state;
+    const { contacts, handleRemoveClick} = this.props;
+    
+    // Cuando el state (query) cambia (updateQuery) 
+    // se produce un re-render y por tanto 
+    // el filtro del listado de contactos
+    // se aplica cada vez que se introduce un caracter en el input (onChange)
+    const filteredContacts = 
+      query === '' ? contacts 
+      : contacts.filter(item => (item.name.toLowerCase().includes(query.toLowerCase())));
+
     return(
       <div className="list-contacts"> 
-        {JSON.stringify(this.state.query)}
+        
         <div className="list-contacts-top">
           <input
             className="search-contacts"
             type="text"
             placeholder="Search contact"
-            value={this.state.query}
+            value={query}
             onChange={(event) => this.updateQuery(event.target.value)}
             />
         </div>
         <ol className="list-contacts">
-          {this.props.contacts.map(contact => (
+          {filteredContacts.map(contact => (
             <li key={contact.id} className="contact-list-item">
               <div 
                 className="contact-avatar" 
@@ -52,7 +64,7 @@ import PropTypes from 'prop-types';
                 <p>{contact.name}</p>
                 <p>@{contact.handle}</p>
               </div>
-              <button className="contact-remove" onClick={() => this.props.handleRemoveClick(contact)}>
+              <button className="contact-remove" onClick={() => handleRemoveClick(contact)}>
                 Remove
               </button>
             </li>
