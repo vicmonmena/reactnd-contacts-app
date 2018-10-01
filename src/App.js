@@ -22,6 +22,7 @@ class App extends Component {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(item => (item.id !== contact.id))
     }))
+    ContactsAPI.removeContact(contact)
   }
 
   render() {
