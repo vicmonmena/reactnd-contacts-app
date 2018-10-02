@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import ListContacts from './ListContacts';
 import * as ContactsAPI from './utils/ContactsAPI';
+import CreateContact from './CreateContact';
 
 class App extends Component {
   state = {
-    contacts: []
+    contacts: [],
+    screen: 'list'
   }
 
   // Con esta función SI esperaría por el evento donde se asigne (en este caso el onClick del button dentro del ListContacs)
@@ -22,13 +24,20 @@ class App extends Component {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(item => (item.id !== contact.id))
     }))
-    ContactsAPI.removeContact(contact)
+    ContactsAPI.remove(contact)
   }
 
   render() {
     return (
       <div>
+      {
+        this.state.screen === 'list' && (
         <ListContacts contacts={this.state.contacts} handleRemoveClick={this.removeContact}/>
+      )}
+      {
+        this.state.screen === 'create' && (
+          <CreateContact />
+      )}
       </div>
     );
   }
