@@ -30,7 +30,7 @@ import PropTypes from 'prop-types';
   render() {
 
     const { query } = this.state;
-    const { contacts, handleRemoveClick} = this.props;
+    const { contacts, handleRemoveClick, onNavigate} = this.props;
     
     // Cuando el state (query) cambia (updateQuery) 
     // se produce un re-render y por tanto 
@@ -51,6 +51,12 @@ import PropTypes from 'prop-types';
             value={query}
             onChange={(event) => this.updateQuery(event.target.value)}
             />
+          <a
+            href='#create'
+            onClick={onNavigate}
+            className='add-contact'>
+            Add contact
+          </a>
         </div>
         {
           filteredContacts.length !== contacts.length && (

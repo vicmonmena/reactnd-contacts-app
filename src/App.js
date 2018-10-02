@@ -32,7 +32,15 @@ class App extends Component {
       <div>
       {
         this.state.screen === 'list' && (
-        <ListContacts contacts={this.state.contacts} handleRemoveClick={this.removeContact}/>
+        <ListContacts 
+          contacts={this.state.contacts} 
+          handleRemoveClick={this.removeContact}
+          onNavigate={()=>{
+            this.setState({
+              screen: 'create'
+            });
+          }}
+        />
       )}
       {
         this.state.screen === 'create' && (
