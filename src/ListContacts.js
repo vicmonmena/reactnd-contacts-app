@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 /**
  * 
  * @param {*} props 
@@ -30,7 +32,7 @@ import PropTypes from 'prop-types';
   render() {
 
     const { query } = this.state;
-    const { contacts, handleRemoveClick, onNavigate} = this.props;
+    const { contacts, handleRemoveClick } = this.props;
     
     // Cuando el state (query) cambia (updateQuery) 
     // se produce un re-render y por tanto 
@@ -51,12 +53,11 @@ import PropTypes from 'prop-types';
             value={query}
             onChange={(event) => this.updateQuery(event.target.value)}
             />
-          <a
-            href='#create'
-            onClick={onNavigate}
+          <Link
+            to='/create'
             className='add-contact'>
             Add contact
-          </a>
+          </Link>
         </div>
         {
           filteredContacts.length !== contacts.length && (
