@@ -36,6 +36,11 @@ class App extends Component {
     })
   }
 
+  /**
+   * history in rednder is destructured 
+   * (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+   * This means we can type history instead props.history
+   */
   render() {
     return (
       <div>
